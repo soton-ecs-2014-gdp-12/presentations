@@ -140,15 +140,66 @@
 		<section> <!-- Harry -->
 			<section>
 				<h1>Videogular Questions</h1>
+				<aside class=notes>
+					Videogular Questions is the JavaScript which actually displays questions from a
+					definition file. It's built on Videogular, an HTML5 video player which uses AngularJS.
+				</aside>
 			</section>
-			<!-- TODO: Videogular Questions slides -->
 			<section>
-				<h2>Demo</h2>
-				<a href="http://chewett.net/videogular-questions-example/app/#/ceasar-example">Here</a>
+				<h2>Accessibility improvements</h2>
+				<ul>
+					<li>Made controls focusable and adjustable with the keyboard</li>
+					<li>Used semantic markup</li>
+					<li>Added accessibility 'hints' (such as labels) using ARIA</li>
+					<li>Contributed back to the Videogular project</li>
+				</ul>
+				<img class="fragment fade-in" src="tab-accessibility.gif">
+				<aside class=notes>
+					<ul>
+						<li>Semantic markup, e.g. <code>&lt;button&gt;</code> instead of <code>&lt;div&gt;</code></li>
+						<li>(show GIF) point out focus indicators</li>
+					</ul>
+				</aside>
+			</section>
+			<section>
+				<h2>Definition files and WebWorkers</h2>
+				<ul>
+					<li>QTI mixes content and presentation, and so is not accessible</li>
+					<li>Why make a complicated, Turing-complete language when there's JavaScript?
+						<ul class="fragment fade-in" data-fragment-index=1>
+							<li>Untrusted JavaScript can steal your cookies!</li>
+						</ul>
+					</li>
+					<li class="fragment fade-in" data-fragment-index=2>WebWorkers are sandboxed</li>
+					<li class="fragment fade-in" data-fragment-index=2>The WebWorker can only pass messages to the 'front-end'</li>
+				</ul>
+				<aside class=notes>
+					<ul>
+						<li>QTI is rather bloated</li>
+						<li>For flexibility, we'd like the quizzes to change depending on the user's answers</li>
+						<li>Running untrusted JavaScript in the browser can be dangerous (could steal cookies, etc.)</li>
+						<li>WebWorkers are JavaScript threads which can only interact with anything else through message passing</li>
+						<li>We provide a WebWorker library to handle messages</li>
+					</ul>
+				</aside>
+			</section>
+			<section>
+				<img src="web-worker-timing.svg" style="background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.7);">
+				<aside class=notes>
+					<ul>
+						<li>To begin with, WebWorker sends annotation times to front-end</li>
+						<li>When one should be displayed, front-end alerts WW, which responds with an action</li>
+						<li>Front-end responds with user's answer, WW gives action...</li>
+					</ul>
+				</aside>
+			</section>
+			<section>
+				<h2>Videogular Questions Demo</h2>
 				<aside class=notes>
 					Show the accessibility fixes.
-					Show a poll with results, mentioning the results server.
+					Talk about the message passing happening in the background
 					Point out scrub bar markers.
+					Show a poll with results, mentioning the results server.
 				</aside>
 			</section>
 		</section>
